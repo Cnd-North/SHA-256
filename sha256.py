@@ -5,8 +5,8 @@
 
 # L is oritignal message (current 40x Fs)
 
-L = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
-
+L = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+print("L:", L)
 # Initial hash values h's are the first 32 bits of the fractional 
 # parts of the square roots of first 8  primes 2 to 19.
 
@@ -33,19 +33,19 @@ k = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x9
 
 # Preprocessing (padding)
 
-pL = L+"1"
+pL = L+1
 # create for loop to add pad zeros to 512 or (448) and then add in 64 at the very end
+# 512 zeros = 128 zeros in hexidecimal (512/4)
+padding = 128
 
+#to convert pL to string 0x to pad
+#pLchar = chr(pL)
+#print(pLchar)
 
-print(pL)
+#to pad a string with zeros and print it as a hex value
+#pLp = f"{pL:#0{padding}X}"
+#print(pLp)
 
-a = "0F"
-b = (a+a)
-print(b)
-
-x = int(b,16)
-
-print (x)
 
 INT_BITS = 32
 
