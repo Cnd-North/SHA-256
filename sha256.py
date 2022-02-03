@@ -5,8 +5,10 @@
 
 # L is oritignal message (current 40x Fs)
 
-L = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-print("L:", L)
+L = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF1
+print("L: ", L)
+print("0xL: ", hex(L))
+
 # Initial hash values h's are the first 32 bits of the fractional 
 # parts of the square roots of first 8  primes 2 to 19.
 
@@ -33,10 +35,28 @@ k = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x9
 
 # Preprocessing (padding)
 
-pL = L+1
+pL = int(L+1)
+print("0xpL: ", hex(pL))
 # create for loop to add pad zeros to 512 or (448) and then add in 64 at the very end
-# 512 zeros = 128 zeros in hexidecimal (512/4)
-padding = 128
+# 512 zeros = 128 zeros in hexidecimal (512/4) 
+padding = int(128)
+print("padding: ", padding)
+#padding is left shift which is based multiplication
+
+#modulous variable to stop while when = 0 - multiple of 512 in binary or 128 in hex
+#LOGIC CHECK: padding with checing for multiple of 128 or 512 doesn't work
+#Next Steps: Looks at converting hex to a string, count the string characters and then continue to pad until string is 128 characters long (excluding 0x)
+#Once 128 characters long (excluding 0x) finish padding and add 64 to end.
+mod = pL%padding
+print("mod", mod)
+while (mod!=0):
+    pL = pL*16
+    print("Padding pL: ", hex(pL))
+    mod = pL%padding
+
+
+
+
 
 #to convert pL to string 0x to pad
 #pLchar = chr(pL)
