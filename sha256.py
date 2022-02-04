@@ -88,15 +88,3 @@ def rightRotate(n, d):
     # with n <<(INT_BITS - d)
     return (n >> d)|(n << (INT_BITS - d)) & 0xFFFFFFFF
  
-# Driver program to
-# test above functions
-# n = 16
-# d = 2
- 
-# print("Left Rotation of",n,"by"
-#       ,d,"is",end=" ")
-# print(leftRotate(n, d))
- 
-# print("Right Rotation of",n,"by"
-#      ,d,"is",end=" ")
-# print(rightRotate(n, d))
