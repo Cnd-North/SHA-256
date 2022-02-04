@@ -76,11 +76,19 @@ temp = pLp #modifying temp to preserve pLp
 hexWord = 0 #temp value to store and write 8 hexidecimal word to message_schedule_array
 array_index = 0 #value to increment through message schedule array indices
 
+
+# LOGIC CHECK - need to split the pLp into 8 hexidecimal words in hex would be pLp // 120..112..104..96..etc
+# So 120..112..104..96.. are the positions, not the value that represent them - find those and then convert them to decimal and do decimal division for qoutient 
 while (split!=0):
     split = split-8
-    hexWord = pLp//split #taking qoutient of hexidecimal over split 
-    print("hexWord ",array_index," :",hex(hexWord))
+    splitor = int(math.pow(16,split)) # determine the proper value for splitting the 8 bits
+    hexWord = temp//splitor #taking qoutient of hexidecimal over split 
+    print("hexWord",array_index,":",hex(hexWord))
     array_index = array_index+1
+
+    #LOGIC CHECK - need to determine to remove the 8 most significan hexideecimals hexWord from temp - so the next 8 significant hexidecimals can be removed
+    temp = temp - (hexWord*(16*split))
+    print("Temp:", hex(temp))
 
 
 INT_BITS = 32
