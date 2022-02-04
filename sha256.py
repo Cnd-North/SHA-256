@@ -13,8 +13,9 @@ print("L: ", L)
 print("0xL: ", hex(L))
 
 hexCount = int(math.log(L,16)) #hexCount is to determine number of hexidecimals to add at end of preprocessing
+#print("Number of hexidecimal digits:", hexCount) 
 
-print("Number of hexidecimal digits:", hexCount) 
+
 # Initial hash values h's are the first 32 bits of the fractional 
 # parts of the square roots of first 8  primes 2 to 19.
 
@@ -43,16 +44,17 @@ k = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x9
 
 pL = int(L+1) #pL is preprocessed message 
 print("0xpL: ", hex(pL))
+
 # create for loop to add pad zeros to 512 or (448) and then add in 64 at the very end
 # 512 zeros = 128 zeros in hexidecimal (512/4) 
 padding = int(128)
-print("padding: ", padding)
+#print("padding: ", padding)
 #padding is left shift which is based multiplication
 
 #modulous variable to stop while when = 0 - multiple of 512 in binary or 128 in hex
 xpL = math.log(pL,16)  #xpL variable to keep track of number of hexidecimal digits
 mod = xpL % padding
-print("mod", mod)
+# print("mod", mod)
 while (mod!=0):
     pL = pL*16
     #print("Padding pL: ", hex(pL))
@@ -60,10 +62,25 @@ while (mod!=0):
     mod = xpL % padding
 
 
-pLp = pL + hexCount
+pLp = pL + hexCount #pLp is the post-processed message L which has been padded and initial digits added
 print("Post-processed message:", hex(pLp))
  
  # ----------------- Preprocessing completed above ------------------------------
+
+#32 bits is 8 hexidecimals
+#post-processed message is 128 hexidecimals = 16* 8 hexidecimal words per address
+message_schedule_array = [0x00000000]*64 #create empty message schedule array of 64* 32 bit words
+
+split = int(128) #split variable to split the 512 bit - 128 hexidecimal message into 16* 8 hexidecimal words
+temp = pLp #modifying temp to preserve pLp
+hexWord = 0 #temp value to store and write 8 hexidecimal word to message_schedule_array
+array_index = 0 #value to increment through message schedule array indices
+
+while (split!=0):
+    split = split-8
+    hexWord = pLp//split #taking qoutient of hexidecimal over split 
+    print("hexWord ",array_index," :",hex(hexWord))
+    array_index = array_index+1
 
 
 INT_BITS = 32
