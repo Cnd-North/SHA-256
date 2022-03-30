@@ -3,7 +3,7 @@
 
 # Pseudo code from Wikipedia SHA-2: https://en.wikipedia.org/wiki/SHA-2
 
-# L is oritignal message (current 40x Fs)
+# L is original message (current 40x Fs)
 
 import math
 
