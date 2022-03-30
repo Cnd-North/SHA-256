@@ -83,12 +83,12 @@ while (split!=0):
     split = split-8
     splitor = int(math.pow(16,split)) # determine the proper value for splitting the 8 bits
     hexWord = temp//splitor #taking qoutient of hexidecimal over split 
-    print("hexWord",array_index,":",hex(hexWord))
+    # print("hexWord",array_index,":",hex(hexWord))
     array_index = array_index+1
 
-    #LOGIC CHECK - need to determine to remove the 8 most significan hexideecimals hexWord from temp - so the next 8 significant hexidecimals can be removed
+    #LOGIC CHECK - need to determine to remove the 8 most significant hexidecimals hexWord from temp - so the next 8 significant hexidecimals can be removed
     temp = temp - (hexWord*(16*split))
-    print("Temp:", hex(temp))
+    # print("Temp:", hex(temp))
 
 
 INT_BITS = 32
